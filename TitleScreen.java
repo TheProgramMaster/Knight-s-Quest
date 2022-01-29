@@ -61,6 +61,7 @@ public class TitleScreen {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
+<<<<<<< HEAD
 			if(e.getSource()==button) {
 				frame.dispose();
 			}
@@ -74,8 +75,16 @@ public class TitleScreen {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+=======
+			if(e.getSource()==button2) {
+				frame.dispose();
+>>>>>>> 356aba1875a5c40716af3f875d49130e1e5910b7
 			}
 		}
 		
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 356aba1875a5c40716af3f875d49130e1e5910b7
