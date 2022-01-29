@@ -64,7 +64,12 @@ public class TitleScreen {
 			// TODO Auto-generated method stub
 			if(e.getSource()==button) {
 				frame.dispose();
-				PlayGame t = new PlayGame();
+				try {
+					PlayGame t = new PlayGame();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 			//Goes to screen giving information of game when user clicks the "Story"
 			//button.
@@ -82,5 +87,5 @@ public class TitleScreen {
 		}
 		
 	}
-	}
+}
 }
