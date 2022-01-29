@@ -60,10 +60,11 @@ public class TitleScreen {
 	public class ButtonListener implements ActionListener{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e){
 			// TODO Auto-generated method stub
 			if(e.getSource()==button) {
 				frame.dispose();
+				PlayGame t = new PlayGame();
 			}
 			//Goes to screen giving information of game when user clicks the "Story"
 			//button.
