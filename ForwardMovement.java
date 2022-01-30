@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.image.*;
 import java.lang.*;
 import java.io.*;
-public class ForwardMovement extends JLabel{
+public class ForwardMovement extends JPanel{
 	private Image img;
 	private static final int FRAME_WIDTH = 500;
 	private static final int FRAME_HEIGHT = 500;

@@ -9,7 +9,9 @@ import java.util.*;
 public class PlayGame implements KeyListener{
 	public JFrame frame = new JFrame();
 	public JLabel[][] sprites = new JLabel[10][10];
-	JPanel panel = new JPanel();
+	public JPanel panel = new JPanel();
+	public JPanel player = new JPanel();
+	public JLayeredPane lPane = new JLayeredPane();
 	public Scanner console = new Scanner(System.in);
 	public int x;
 	public int y;
@@ -21,11 +23,13 @@ public class PlayGame implements KeyListener{
 		RIGHT,
 		UP
 	};
+	@SuppressWarnings("deprecation")
 	public PlayGame() throws IOException {
 		panel.setLayout(new GridLayout(10,10));
 		frame.setSize(500,500);
 		x = frame.getWidth()/100;
 		y = frame.getHeight()/100;
+		JPanel playerPanel = new ForwardMovement(x,y);
 		URL grassUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
 		BufferedImage grassImage = ImageIO.read(grassUrl);
 		//Each grass block should be 25 pixels by 25 pixels.
@@ -54,6 +58,12 @@ public class PlayGame implements KeyListener{
 		sprites[5][6] = new JLabel(new ImageIcon(castleBlock));
 		//Add player to game.
 		//sprites[2][3] = player;
+		//Create Dirt Path to next area.
+		URL dirtPathUrl = new URL("https://s3.amazonaws.com/spoonflower/public/design_thumbnails/0464/6961/rr12x12_Dirt_Block_2015_shop_preview.png");
+		BufferedImage dirtPathImage = ImageIO.read(dirtPathUrl);
+		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/10,frame.getHeight()/10,Image.SCALE_DEFAULT);
+		sprites[0][4] = new JLabel(new ImageIcon(dirtPathBlock));
+		sprites[0][5] = new JLabel(new ImageIcon(dirtPathBlock));
 		for(int i = 0;i < sprites.length;i++) {
 			for(int j = 0;j < sprites[i].length;j++) {
 				panel.add(sprites[i][j]);
