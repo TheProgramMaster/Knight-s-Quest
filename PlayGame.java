@@ -132,15 +132,20 @@ public class PlayGame implements KeyListener{
 		}
 		//Move player left on left arrow key.
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			panel.revalidate();
+			panel.repaint();
+			panel.setLayout(new GridLayout(10,10));
+			for(int i = 0;i < row;i++) {
+				for(int j = 0;j < col-1;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
 			JLabel prev = sprites[col][row-1];
 			sprites[col][row-1] = playerImage;
 			sprites[col][row] = prev;
 			row -= 1;
-			panel.revalidate();
-			panel.repaint();
-			panel.setLayout(new GridLayout(10,10));
-			for(int i = 0;i < sprites.length;i++) {
-				for(int j = 0;j < sprites[i].length;j++) {
+			for(int i = row+1;i < sprites.length;i++) {
+				for(int j = col+1;j < sprites[i].length;j++) {
 					panel.add(sprites[i][j]);
 				}
 			}

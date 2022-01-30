@@ -21,7 +21,7 @@ public class ForestMainMap implements KeyListener{
 		row = 4;
 		URL grassPathUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
 		BufferedImage grassPathImage = ImageIO.read(grassPathUrl);
-		Image grassPathBlock = grassPathImage.getScaledInstance(frame.getWidth()/50, frame.getHeight()/50, Image.SCALE_DEFAULT);
+		Image grassPathBlock = grassPathImage.getScaledInstance(frame.getWidth()/10, frame.getHeight()/10, Image.SCALE_DEFAULT);
 		for(int i = 0;i < blocks.length;i++) {
 			for(int j = 0;j < blocks[0].length;j++) {
 				blocks[i][j] = new JLabel(new ImageIcon(grassPathBlock));
@@ -29,7 +29,7 @@ public class ForestMainMap implements KeyListener{
 		}
 		URL dirtPathUrl = new URL("https://th.bing.com/th/id/R.c928294c3b721975231366b6298648f7?rik=GqlCSDyVESBD%2fA&riu=http%3a%2f%2fi.imgur.com%2ftMbow.png&ehk=cO7W%2b%2fH9fLUPW7EEpsY8RI6PCq8A6T%2fpqO9y6FNMR4Q%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1");
 		BufferedImage dirtPathImage = ImageIO.read(dirtPathUrl);
-		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/50, frame.getHeight()/50, Image.SCALE_DEFAULT);
+		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/10, frame.getHeight()/10, Image.SCALE_DEFAULT);
 		blocks[9][4] = new JLabel(new ImageIcon(dirtPathBlock));
 		blocks[9][5] = new JLabel(new ImageIcon(dirtPathBlock));
 		/*URL goblinPathUrl = new URL("https://i.pinimg.com/736x/39/57/e3/3957e3772a3b1014064c2c0110566fd2.jpg");
