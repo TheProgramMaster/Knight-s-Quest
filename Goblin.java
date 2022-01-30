@@ -15,13 +15,13 @@ public class Goblin {
 		this.health = health;
 	}
 	public int getStrength() {
-		return this.getStrength();
+		return this.strength;
 	}
 	public void setStrength(int strength) {
 		this.strength = strength;
 	}
 	public int getDefense() {
-		return this.getDefense();
+		return this.defense;
 	}
 	public void setDefense(int defense) {
 		this.defense = defense;

@@ -27,19 +27,15 @@ public class PlayerTest implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			y -= dx;
-			playerPanel.movePlayer(x,y);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			x += dx;
-			playerPanel.movePlayer(x, y);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 			x -= dx;
-			playerPanel.movePlayer(x, y);
 		}
 		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			y += dy;
-			playerPanel.movePlayer(x, y);
 		}
 	}
 	@Override
