@@ -25,11 +25,14 @@ public class PlayGame implements KeyListener{
 	};
 	@SuppressWarnings("deprecation")
 	public PlayGame() throws IOException {
+		//Establish world as 10-by-10 squares.
+		//Each square will be 50 pixels by 50 pixels.
 		panel.setLayout(new GridLayout(10,10));
 		frame.setSize(500,500);
 		x = frame.getWidth()/100;
 		y = frame.getHeight()/100;
-		JPanel playerPanel = new ForwardMovement(x,y);
+		JPanel playerPanel = new PlayerImage(x,y);
+		//Create grass blocks for the ground and fill map with them.
 		URL grassUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
 		BufferedImage grassImage = ImageIO.read(grassUrl);
 		//Each grass block should be 25 pixels by 25 pixels.
@@ -39,22 +42,26 @@ public class PlayGame implements KeyListener{
 				sprites[i][j] = new JLabel(new ImageIcon(grassBlock));
 			}
 		}
+		//Create trees for map.
 		URL treeUrl = new URL("https://us.v-cdn.net/5021068/uploads/editor/ap/aod40fury6mk.png");
 		BufferedImage treeImage = ImageIO.read(treeUrl);
 		Image treeBlock = treeImage.getScaledInstance(frame.getWidth()/20,frame.getHeight()/20,Image.SCALE_DEFAULT);
+		//Fill left side of map with trees.
 		for(int i = 0;i < sprites[0].length;i++) {
 			sprites[i][0] = new JLabel(new ImageIcon(treeBlock));
 		}
+		//Fill right side of map with trees.
 		for(int i = 0;i < sprites[0].length;i++) {
 			sprites[i][sprites.length-1] = new JLabel(new ImageIcon(treeBlock));
 		}
+		//Fill bottom row of map with trees.
 		for(int i = 1;i < sprites.length-1;i++) {
 			sprites[sprites[i].length-1][i] = new JLabel(new ImageIcon(treeBlock));
 		}
+		//Add Castle to game
 		URL castleUrl = new URL("https://th.bing.com/th/id/R.0bcf26abbf833300d73a8a743c95985d?rik=nNBklF4iuPRMCA&riu=http%3a%2f%2fwww.8bit.cool%2fwp-content%2fuploads%2fgem-castle.png&ehk=sYcWNmIuP4CZp0QBSogJOFyYqXeHYKocutDkuyPjz3A%3d&risl=&pid=ImgRaw&r=0");
 		BufferedImage castleImage = ImageIO.read(castleUrl);
 		Image castleBlock = castleImage.getScaledInstance(frame.getWidth()/10,frame.getHeight()/10, Image.SCALE_DEFAULT);
-		//Add Castle to game
 		sprites[5][6] = new JLabel(new ImageIcon(castleBlock));
 		//Add player to game.
 		//sprites[2][3] = player;
