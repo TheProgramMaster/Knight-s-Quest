@@ -9,7 +9,7 @@ public class PlayerTest implements KeyListener{
 	public int dy = 10;
 	private int x;
 	private int y;
-	private JPanel playerPanel;
+	private PlayerImage playerPanel;
 	public PlayerTest() throws IOException{
 		frame.setSize(500,500);
 		x = frame.getWidth()/2;
@@ -27,7 +27,19 @@ public class PlayerTest implements KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
 			y -= dx;
-			((PlayerImage) playerPanel).movePlayer(x,y);
+			playerPanel.movePlayer(x,y);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			x += dx;
+			playerPanel.movePlayer(x, y);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			x -= dx;
+			playerPanel.movePlayer(x, y);
+		}
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			y += dy;
+			playerPanel.movePlayer(x, y);
 		}
 	}
 	@Override

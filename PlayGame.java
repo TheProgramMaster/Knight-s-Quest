@@ -10,7 +10,6 @@ public class PlayGame implements KeyListener{
 	public JFrame frame = new JFrame();
 	public JLabel[][] sprites = new JLabel[10][10];
 	public JPanel panel = new JPanel();
-	public JPanel overPanel = new JPanel();
 	public JPanel player = new JPanel();
 	public JLayeredPane lPane = new JLayeredPane();
 	public Scanner console = new Scanner(System.in);
@@ -28,12 +27,11 @@ public class PlayGame implements KeyListener{
 	public PlayGame() throws IOException {
 		//Establish world as 10-by-10 squares.
 		//Each square will be 50 pixels by 50 pixels.
-		overPanel.setLayout(new OverlayLayout(overPanel));
 		panel.setLayout(new GridLayout(10,10));
 		frame.setSize(500,500);
 		x = frame.getWidth()/2;
 		y = frame.getHeight()/2;
-		JPanel playerPanel = new PlayerImage(x,y);
+		JLabel playerPanel = new PlayerImage(x,y);
 		playerPanel.setLayout(new FlowLayout());
 		//Create grass blocks for the ground and fill map with them.
 		URL grassUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
@@ -74,14 +72,14 @@ public class PlayGame implements KeyListener{
 		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/10,frame.getHeight()/10,Image.SCALE_DEFAULT);
 		sprites[0][4] = new JLabel(new ImageIcon(dirtPathBlock));
 		sprites[0][5] = new JLabel(new ImageIcon(dirtPathBlock));
+		JLabel playerImage = new PlayerImage(frame.getWidth()/2,frame.getHeight()/2);
+		sprites[4][5] = playerImage;
 		for(int i = 0;i < sprites.length;i++) {
 			for(int j = 0;j < sprites[i].length;j++) {
 				panel.add(sprites[i][j]);
 			}
 		}
-		overPanel.add(panel);
-		overPanel.add(playerPanel);
-		frame.add(overPanel);
+		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}

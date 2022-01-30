@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 import java.io.IOException;
 import java.net.*;
-public class PlayerImage extends JPanel{
+public class PlayerImage extends JLabel{
 	private int x;
 	private int y;
 	private final static int FRAME_HEIGHT = 500;
@@ -20,6 +20,7 @@ public class PlayerImage extends JPanel{
 		
 	}
 	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		g.drawImage(playerSprite,x,y,this);
 	}
 	public void movePlayer(int x, int y) {
