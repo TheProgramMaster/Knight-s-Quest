@@ -100,68 +100,85 @@ public class PlayGame implements KeyListener{
 		// TODO Auto-generated method stub
 		//Move player down on down arrow key.
 		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-			JLabel prev = sprites[col][row+1];
-			sprites[col][row+1] = playerImage;
-			sprites[col][row] = prev;
-			row += 1;
-			frame = new JFrame();
-			panel = new JPanel();
-			panel.setLayout(new GridLayout(5,5));
-			for(int i = 0;i < sprites.length;i++) {
-				for(int j = 0;j < sprites[i].length;j++) {
-					panel.add(sprites[i][j]);
-				}
-			}
-			frame.add(panel);
-			frame.setVisible(true);
-		}
-		//Move player right on right arrow key.
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			JLabel prev = sprites[col+1][row];
 			sprites[col+1][row] = playerImage;
 			sprites[col][row] = prev;
 			col += 1;
-			panel = new JPanel();
-			panel.setLayout(new GridLayout(5,5));
+			panel.revalidate();
+			panel.repaint();
+			panel.setLayout(new GridLayout(10,10));
 			for(int i = 0;i < sprites.length;i++) {
 				for(int j = 0;j < sprites[i].length;j++) {
 					panel.add(sprites[i][j]);
 				}
 			}
 			frame.add(panel);
-			frame.setVisible(true);
+		}
+		//Move player right on right arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			JLabel prev = sprites[col][row+1];
+			sprites[col+1][row] = playerImage;
+			sprites[col][row] = prev;
+			row += 1;
+			panel.revalidate();
+			panel.repaint();
+			panel.setLayout(new GridLayout(10,10));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
 		}
 		//Move player left on left arrow key.
 		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			JLabel prev = sprites[col-1][row];
-			sprites[col-1][row] = playerImage;
-			sprites[col][row] = prev;
-			col -= 1;
-			panel = new JPanel();
-			panel.setLayout(new GridLayout(5,5));
-			for(int i = 0;i < sprites.length;i++) {
-				for(int j = 0;j < sprites[i].length;j++) {
-					panel.add(sprites[i][j]);
-				}
-			}
-			frame.add(panel);
-			frame.setVisible(true);
-		}
-		//Move player up on up arrow key.
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
 			JLabel prev = sprites[col][row-1];
 			sprites[col][row-1] = playerImage;
 			sprites[col][row] = prev;
 			row -= 1;
-			panel = new JPanel();
-			panel.setLayout(new GridLayout(5,5));
+			panel.revalidate();
+			panel.repaint();
+			panel.setLayout(new GridLayout(10,10));
 			for(int i = 0;i < sprites.length;i++) {
 				for(int j = 0;j < sprites[i].length;j++) {
 					panel.add(sprites[i][j]);
 				}
 			}
 			frame.add(panel);
-			frame.setVisible(true);
+		}
+		//Move player up on up arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			JLabel prev = sprites[col-1][row];
+			sprites[col-1][row] = playerImage;
+			sprites[col][row] = prev;
+			col -= 1;
+			panel.revalidate();
+			panel.repaint();
+			panel.setLayout(new GridLayout(10,10));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
+		}
+		if(row==4&&col==0) {
+			frame.dispose();
+			try {
+				ForestMap t = new ForestMap();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+		if(row==5&&col==0) {
+			frame.dispose();
+			try {
+				ForestMap t = new ForestMap();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	@Override
