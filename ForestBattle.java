@@ -22,6 +22,8 @@ public class ForestBattle{
 	public JButton itemsButton = new JButton(itemsButtonIcon);
 	public JButton[] buttons = {attackButton, defenseButton,
 			magicButton, itemsButton};
+	public JTextArea characterInfo = new JTextArea();
+	public JTextArea enemyInfo = new JTextArea();
 	public ActionListener listener = new ButtonListener();
 	public static Icon resizeIcon(ImageIcon icon, int resizedWidth, int resizedHeight) {
 		Image img = icon.getImage();
@@ -34,34 +36,52 @@ public class ForestBattle{
 		text.setBackground(Color.BLACK);
 		text.setForeground(Color.WHITE);
 		frame.setLayout(new BorderLayout());
+		Player player = new Player(100,10,10);
+		Hunter hunter = new Hunter(100,10,10);
+		Wizard wizard = new Wizard(100,10,10);
+		Cleric cleric = new Cleric(100,10,10);
+		Goblin goblin = new Goblin(100,10,10);
+		characterInfo.setText(characterInfo.getText()+player+"\n");
+		characterInfo.setText(characterInfo.getText()+hunter+"\n");
+		characterInfo.setText(characterInfo.getText()+wizard+"\n");
+		characterInfo.setText(characterInfo.getText()+cleric+"\n");
+		characterInfo.setBackground(Color.BLACK);
+		characterInfo.setForeground(Color.WHITE);
+		enemyInfo.setText(enemyInfo.getText()+goblin+"\n");
+		enemyInfo.setBackground(Color.BLACK);
+		enemyInfo.setForeground(Color.WHITE);
 		playerOptions.setLayout(new GridLayout(1,4));
+		//Establish Forest background scenary
 		URL forestBackgroundUrl = new URL("https://i.pinimg.com/originals/af/54/2d/af542d89a7722b3ba7d078247d3314fe.gif");
 		BufferedImage bufferedImage = ImageIO.read(forestBackgroundUrl);
 		Image image = bufferedImage.getScaledInstance(frame.getWidth(),frame.getHeight(),Image.SCALE_DEFAULT);
 		ImageIcon icon = new ImageIcon(image);
 		background.setIcon(icon);
-		attackButton.setBounds(0,0,playerOptions.getWidth()/4,frame.getHeight());
+		//Establish Attack Button
+		attackButton.setBounds(playerOptions.getWidth()/2,0,playerOptions.getWidth(),frame.getHeight());
+		playerOptions.add(attackButton);
 		int offset = attackButton.getInsets().left;
 		attackButton.setIcon(resizeIcon(attackButtonIcon,attackButton.getWidth()-offset,attackButton.getHeight()-offset));
-		playerOptions.add(attackButton);
+		//Establish Defense Button
 		defenseButton.setBounds(0,playerOptions.getHeight()/4,playerOptions.getWidth(),frame.getHeight()/4);
+		playerOptions.add(defenseButton);
 		int offset2 = defenseButton.getInsets().left;
 		defenseButton.setIcon(resizeIcon(defenseButtonIcon,defenseButton.getWidth()-offset2,defenseButton.getHeight()-offset2));
-		playerOptions.add(defenseButton);
+		//Establish Magic Button.
 		magicButton.setBounds(0,playerOptions.getHeight()/2,playerOptions.getWidth(),frame.getHeight()/2);
+		playerOptions.add(magicButton);
 		int offset3 = magicButton.getInsets().left;
 		magicButton.setIcon(resizeIcon(magicButtonIcon,magicButton.getWidth()-offset3,magicButton.getHeight()-offset3));
-		playerOptions.add(magicButton);
+		//Establish Items Button.
 		itemsButton.setBounds(0,0,playerOptions.getWidth()/4,frame.getHeight());
+		playerOptions.add(itemsButton);
 		int offset4 = itemsButton.getInsets().left;
 		attackButton.setIcon(resizeIcon(itemsButtonIcon,itemsButton.getWidth()-offset4,itemsButton.getHeight()-offset4));
-		playerOptions.add(attackButton);
-		playerOptions.add(defenseButton);
-		playerOptions.add(magicButton);
-		playerOptions.add(itemsButton);
 		frame.add(background,BorderLayout.CENTER);
 		frame.add(text,BorderLayout.NORTH);
 		frame.add(playerOptions,BorderLayout.WEST);
+		frame.add(characterInfo,BorderLayout.SOUTH);
+		frame.add(enemyInfo,BorderLayout.EAST);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
