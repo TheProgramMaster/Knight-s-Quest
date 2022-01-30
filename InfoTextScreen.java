@@ -21,8 +21,4 @@ public class InfoTextScreen extends JTextArea{
 		g.drawImage(img, 0, 0, null);
 		super.paintComponent(g);
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a6a4bb2034b2347e418971e625b8e6e641605ddd

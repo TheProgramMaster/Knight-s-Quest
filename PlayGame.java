@@ -10,6 +10,7 @@ public class PlayGame implements KeyListener{
 	public JFrame frame = new JFrame();
 	public JLabel[][] sprites = new JLabel[10][10];
 	public JPanel panel = new JPanel();
+	public JPanel overPanel = new JPanel();
 	public JPanel player = new JPanel();
 	public JLayeredPane lPane = new JLayeredPane();
 	public Scanner console = new Scanner(System.in);
@@ -27,11 +28,13 @@ public class PlayGame implements KeyListener{
 	public PlayGame() throws IOException {
 		//Establish world as 10-by-10 squares.
 		//Each square will be 50 pixels by 50 pixels.
+		overPanel.setLayout(new OverlayLayout(overPanel));
 		panel.setLayout(new GridLayout(10,10));
 		frame.setSize(500,500);
-		x = frame.getWidth()/100;
-		y = frame.getHeight()/100;
+		x = frame.getWidth()/2;
+		y = frame.getHeight()/2;
 		JPanel playerPanel = new PlayerImage(x,y);
+		playerPanel.setLayout(new FlowLayout());
 		//Create grass blocks for the ground and fill map with them.
 		URL grassUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
 		BufferedImage grassImage = ImageIO.read(grassUrl);
@@ -76,7 +79,9 @@ public class PlayGame implements KeyListener{
 				panel.add(sprites[i][j]);
 			}
 		}
-		frame.add(panel);
+		overPanel.add(panel);
+		overPanel.add(playerPanel);
+		frame.add(overPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
