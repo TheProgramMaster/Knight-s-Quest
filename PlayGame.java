@@ -11,28 +11,32 @@ public class PlayGame implements KeyListener{
 	public JLabel[][] sprites = new JLabel[10][10];
 	public JPanel panel = new JPanel();
 	public JPanel player = new JPanel();
-	public JLayeredPane lPane = new JLayeredPane();
 	public Scanner console = new Scanner(System.in);
+	public JLabel playerImage;
 	public int x;
 	public int y;
 	public int dx = 10;
 	public int dy = 10;
+	public int col;
+	public int row;
 	public enum Direction {
 		DOWN,
 		LEFT,
 		RIGHT,
 		UP
 	};
-	@SuppressWarnings("deprecation")
+	//@SuppressWarnings("deprecation")
 	public PlayGame() throws IOException {
 		//Establish world as 10-by-10 squares.
 		//Each square will be 50 pixels by 50 pixels.
 		panel.setLayout(new GridLayout(10,10));
 		frame.setSize(500,500);
+		frame.setBackground(Color.GREEN);
 		x = frame.getWidth()/2;
 		y = frame.getHeight()/2;
-		JLabel playerPanel = new PlayerImage(x,y);
-		playerPanel.setLayout(new FlowLayout());
+		col = 3;
+		row = 4;
+		JLayeredPane pane = new JLayeredPane();
 		//Create grass blocks for the ground and fill map with them.
 		URL grassUrl = new URL("https://i.pinimg.com/originals/38/24/17/382417b60104d16330ea6933754a658b.png");
 		BufferedImage grassImage = ImageIO.read(grassUrl);
@@ -72,13 +76,14 @@ public class PlayGame implements KeyListener{
 		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/10,frame.getHeight()/10,Image.SCALE_DEFAULT);
 		sprites[0][4] = new JLabel(new ImageIcon(dirtPathBlock));
 		sprites[0][5] = new JLabel(new ImageIcon(dirtPathBlock));
-		JLabel playerImage = new PlayerImage(frame.getWidth()/2,frame.getHeight()/2);
-		sprites[4][5] = playerImage;
+		playerImage = new PlayerImage(frame.getWidth()/2,frame.getHeight()/2);
+		sprites[col][row] = playerImage;
 		for(int i = 0;i < sprites.length;i++) {
 			for(int j = 0;j < sprites[i].length;j++) {
 				panel.add(sprites[i][j]);
 			}
 		}
+		frame.addKeyListener(this);
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -86,31 +91,81 @@ public class PlayGame implements KeyListener{
 	public static void main(String[] args) throws IOException {
 		PlayGame t = new PlayGame();
 	}
-	@Override
+	//@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getKeyCode() == KeyEvent.VK_UP) {
-			y += dy;
-			//player.translate(x,y);
-		}
-		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
-			y -= dy;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-			x -= dy;
-		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
-			x += dx;
-		}
 	}
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		//Move player down on down arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_DOWN) {
+			JLabel prev = sprites[col][row+1];
+			sprites[col][row+1] = playerImage;
+			sprites[col][row] = prev;
+			row += 1;
+			frame = new JFrame();
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(5,5));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
+			frame.setVisible(true);
+		}
+		//Move player right on right arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			JLabel prev = sprites[col+1][row];
+			sprites[col+1][row] = playerImage;
+			sprites[col][row] = prev;
+			col += 1;
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(5,5));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
+			frame.setVisible(true);
+		}
+		//Move player left on left arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_LEFT) {
+			JLabel prev = sprites[col-1][row];
+			sprites[col-1][row] = playerImage;
+			sprites[col][row] = prev;
+			col -= 1;
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(5,5));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
+			frame.setVisible(true);
+		}
+		//Move player up on up arrow key.
+		if(e.getKeyCode() == KeyEvent.VK_UP) {
+			JLabel prev = sprites[col][row-1];
+			sprites[col][row-1] = playerImage;
+			sprites[col][row] = prev;
+			row -= 1;
+			panel = new JPanel();
+			panel.setLayout(new GridLayout(5,5));
+			for(int i = 0;i < sprites.length;i++) {
+				for(int j = 0;j < sprites[i].length;j++) {
+					panel.add(sprites[i][j]);
+				}
+			}
+			frame.add(panel);
+			frame.setVisible(true);
+		}
 	}
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
 	}
 }
