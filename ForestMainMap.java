@@ -11,6 +11,7 @@ public class ForestMainMap implements KeyListener{
 	public JLabel[][] blocks = new JLabel[10][10];
 	public JPanel world = new JPanel();
 	public JLabel player;
+	public JLabel goblin1;
 	private int col;
 	private int row;
 	public Random rand = new Random();
@@ -32,14 +33,12 @@ public class ForestMainMap implements KeyListener{
 		Image dirtPathBlock = dirtPathImage.getScaledInstance(frame.getWidth()/10, frame.getHeight()/10, Image.SCALE_DEFAULT);
 		blocks[9][4] = new JLabel(new ImageIcon(dirtPathBlock));
 		blocks[9][5] = new JLabel(new ImageIcon(dirtPathBlock));
-		/*URL goblinPathUrl = new URL("https://i.pinimg.com/736x/39/57/e3/3957e3772a3b1014064c2c0110566fd2.jpg");
+		URL goblinPathUrl = new URL("https://i.pinimg.com/736x/39/57/e3/3957e3772a3b1014064c2c0110566fd2.jpg");
 		BufferedImage goblinPathImage = ImageIO.read(goblinPathUrl);
-		Image goblinPathBlock = goblinPathImage.getScaledInstance(frame.getWidth()/50, frame.getHeight()/50, Image.SCALE_DEFAULT);
-		for(int i = 0;i < 4;i++) {
-			int x = (int)(rand.nextDouble()*(blocks.length));
-			int y = (int)(rand.nextDouble()*(blocks[0].length));
-			blocks[x][y] = new JLabel(new ImageIcon(goblinPathBlock));
-		}*/
+		Image goblinPathBlock = goblinPathImage.getScaledInstance(frame.getWidth()/10, frame.getHeight()/10, Image.SCALE_DEFAULT);
+		goblin1 = blocks[5][4];
+		goblin1 = new JLabel(new ImageIcon(goblinPathBlock));
+		blocks[5][4] = new JLabel(new ImageIcon(goblinPathBlock));
 		player = new PlayerImage(frame.getWidth()/2,frame.getHeight()/2);
 		blocks[col][row] = player;
 		for(int i = 0;i < blocks.length;i++) {
@@ -111,6 +110,15 @@ public class ForestMainMap implements KeyListener{
 				if(e.getKeyCode() == KeyEvent.VK_UP) {
 					JLabel prev = blocks[col-1][row];
 					blocks[col-1][row] = player;
+					//Initialize battle in the case of colliding with goblin.
+					if(blocks[col-1][row] == blocks[5][4]) {
+						try {
+							ForestBattle t = new ForestBattle();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
 					blocks[col][row] = prev;
 					col -= 1;
 					world.revalidate();

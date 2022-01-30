@@ -11,7 +11,7 @@ public class Hunter {
 	public int getHealth() {
 		return this.health;
 	}
-	public void getHealth(int health) {
+	public void setHealth(int health) {
 		this.health = health;
 	}
 	public int getStrength() {
@@ -25,6 +25,12 @@ public class Hunter {
 	}
 	public void setDefense(int defense) {
 		this.defense = defense;
+	}
+	public int fight() {
+		return (int)(Math.random()*this.getStrength());
+	}
+	public int block() {
+		return (int)(Math.random()*this.getDefense());
 	}
 	public String toString() {
 		String result = "";

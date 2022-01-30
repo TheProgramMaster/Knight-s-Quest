@@ -26,6 +26,12 @@ public class Wizard {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
+	public int castSpell() {
+		return (int)(Math.random()*this.getPower());
+	}
+	public int block() {
+		return (int)(Math.random()*this.getDefense());
+	}
 	public String toString() {
 		String result = "";
 		result += "Health of Wizard: " + this.getHealth() + "\n" +

@@ -26,6 +26,12 @@ public class Cleric {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
+	public int block() {
+		return (int)(Math.random()*this.getDefense());
+	}
+	public int heal() {
+		return (int)(Math.random()*this.getHealingPower());
+	}
 	public String toString() {
 		String result = "";
 		result += "Health of Cleric: " + this.getHealth() + "\n" + 

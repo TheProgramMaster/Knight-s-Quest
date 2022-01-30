@@ -26,6 +26,12 @@ public class Player {
 	public void setDefense(int defense) {
 		this.defense = defense;
 	}
+	public int fight() {
+		return (int)(Math.random()*this.getStrength());
+	}
+	public int block() {
+		return (int)(Math.random()*this.getDefense());
+	}
 	public String toString() {
 		String result = "";
 		result += "Health of Player: " + this.getHealth() + "\n" +
